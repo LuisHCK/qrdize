@@ -96,7 +96,7 @@ export default {
      * Pare the scanned text
      */
     getText(text) {
-      const defaultText = text + ''
+      const defaultText = text + "";
       const isUrl = /^(ftp|http|https):\/\/[^ "]+$/.test(text);
       if (isUrl) {
         return `<a href="${text}" target="_blank">${text}</a>`;
@@ -118,9 +118,10 @@ export default {
         description: this.description,
         date: new Date().toISOString()
       });
+      this.closePopUp();
       setTimeout(() => {
-        this.$router.push("/")
-      }, 300)
+        this.$router.push("/");
+      }, 300);
     },
 
     close() {},
