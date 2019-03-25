@@ -96,11 +96,12 @@ export default {
      * Pare the scanned text
      */
     getText(text) {
+      const defaultText = text + ''
       const isUrl = /^(ftp|http|https):\/\/[^ "]+$/.test(text);
       if (isUrl) {
         return `<a href="${text}" target="_blank">${text}</a>`;
       } else {
-        return text;
+        return defaultText;
       }
     },
 
