@@ -109,9 +109,6 @@ export default {
      */
     closePopUp() {
       this.showPopUp = false;
-      setTimeout(() => {
-        this.$router.push("/");
-      }, 300);
     },
 
     saveCode() {
@@ -120,7 +117,9 @@ export default {
         description: this.description,
         date: new Date().toISOString()
       });
-      this.closePopUp();
+      setTimeout(() => {
+        this.$router.push("/")
+      }, 300)
     },
 
     close() {},
