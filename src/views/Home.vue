@@ -84,7 +84,7 @@ export default {
   }
 
   .floating-button {
-    position: static;
+    position: absolute;
     bottom: 15px;
     right: 15px;
   }

@@ -1,6 +1,16 @@
 <template>
   <div class="reader-page">
     <video id="video" width="100%" height="100%"></video>
+    <vs-button
+      class="toggle-btn"
+      size="large"
+      radius
+      color="primary"
+      type="border"
+      icon="switch_camera"
+      @click="toggleCamera"
+    ></vs-button>
+    <!-- Poppup -->
     <vs-popup :title="'Code: '" :active.sync="showPopUp" @close="closePopUp">
       <div class="code-container">
         <span class="code" v-html="getText(qrcode.text)"></span>
@@ -37,7 +47,8 @@ export default {
       description: undefined,
       // Propmt
       val: "",
-      activePrompt: false
+      activePrompt: false,
+      currentDevise: 0
     };
   },
 
@@ -59,11 +70,12 @@ export default {
     /**
      * Set devise 0 as default
      */
-    setDefaultInputDevise() {
-      const firstDeviceId = this.videoInputDevices[0].deviceId;
+    setDefaultInputDevise(id = 0) {
+      const DeviceId = this.videoInputDevices[id].deviceId;
+      this.currentDevise = id;
 
       this.reader
-        .decodeFromInputVideoDevice(firstDeviceId, "video")
+        .decodeFromInputVideoDevice(DeviceId, "video")
         .then(result => this.processCode(result))
         .catch(err => console.error(err));
     },
@@ -107,7 +119,15 @@ export default {
       this.closePopUp();
     },
 
-    close() {}
+    close() {},
+
+    toggleCamera() {
+      if (this.currentDevise == 0 && this.videoInputDevices.length > 1) {
+        this.setDefaultInputDevise(1);
+      } else {
+        this.setDefaultInputDevise(0);
+      }
+    }
   },
 
   /**
@@ -120,4 +140,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.toggle-btn {
+  position: absolute;
+  bottom: 15px;
+  left: 48%;
+}
 </style>
