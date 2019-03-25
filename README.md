@@ -1,4 +1,5 @@
-# qrdize
+# QrDize
+A free and opensource QR Code reader made with Vuejs
 
 ## Project setup
 ```

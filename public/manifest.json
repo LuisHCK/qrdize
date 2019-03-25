@@ -1,6 +1,7 @@
 {
-  "name": "qrdize",
-  "short_name": "qrdize",
+  "name": "QrDize - QR Code Scanner",
+  "description": "A free and opensource QR Code scanner",
+  "short_name": "QrDize",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
@@ -15,6 +16,7 @@
   ],
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#000000",
+  "background_color": "#ffffff",
+  "orientation": "portrait",
   "theme_color": "#039BE5"
 }
