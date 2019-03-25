@@ -62,7 +62,11 @@ export default {
         .then(videoInputDevices => {
           this.videoInputDevices = videoInputDevices;
           // Set input devise
-          this.setDefaultInputDevise();
+          if (this.videoInputDevices.length > 1) {
+            this.setDefaultInputDevise(1);
+          } else {
+            this.setDefaultInputDevise(0);
+          }
         })
         .catch(err => console.error(err));
     },
