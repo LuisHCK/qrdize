@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import EventBus from "./event-bus";
 import NavBar from "@/components/NavBar.vue";
 
 export default {
@@ -22,8 +23,7 @@ export default {
         type: "confirm",
         color: "success",
         title: `Reload`,
-        text:
-          "New content is available; please refresh.",
+        text: "New content is available; please refresh.",
         accept: this.refreshApp
       });
     },
@@ -32,8 +32,12 @@ export default {
      * Force refresh app
      */
     refreshApp() {
-      location.reload(true)
+      location.reload(true);
     }
+  },
+
+  created() {
+    EventBus.$on("pwa-updated", this.pwaUpdated);
   }
 };
 </script>
