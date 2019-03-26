@@ -3,9 +3,18 @@
     <div v-if="qrcodes.length">
       <ul class="qr-codes-list">
         <li class="qr-code-item" v-for="qrcode in qrcodes" :key="'qr'+qrcode.id">
-          <div class="qr-code" v-html="getQrSvg(qrcode)"></div>
+          <div class="qr-code" v-html="getQrSvg(qrcode.code)"></div>
           <div class="qr-info">
             <strong v-html="getCodeText(qrcode.code)"></strong>
+          </div>
+          <div class="qr-actions">
+            <vs-button
+              radius
+              color="danger"
+              type="border"
+              icon="delete"
+              @click="deleteQrCode(qrcode.id)"
+            ></vs-button>
           </div>
         </li>
       </ul>
@@ -70,6 +79,23 @@ export default {
       } else {
         return text;
       }
+    },
+
+    /**
+     * Delete a QR code from db
+     */
+    deleteQrCode(qrCodeId) {
+      this.$db.qrcodes
+        .where("id")
+        .equals(qrCodeId)
+        .delete()
+        .then(res => {
+          // Reload qr codes
+          this.getQrCodes();
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   },
 
@@ -103,7 +129,14 @@ export default {
     display: flex;
     border-bottom: 1px solid rgb(233, 233, 233);
     .qr-info {
+      width: 100%;
+      word-break: break-word;
       padding-top: 15px;
+    }
+    .qr-actions {
+      display: flex;
+      align-items: center;
+      margin-right: 15px;
     }
   }
 }
