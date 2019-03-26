@@ -110,7 +110,7 @@ export default {
     closePopUp() {
       this.showPopUp = false;
       // Reload Reader
-      this.setDefaultInputDevise()
+      this.initReader()
     },
 
     saveCode() {
