@@ -8,10 +8,15 @@
 <script>
 import EventBus from "./event-bus";
 import NavBar from "@/components/NavBar.vue";
+import { mapState } from "vuex";
 
 export default {
   components: {
     NavBar
+  },
+
+  computed: {
+    ...mapState(["settings"])
   },
 
   methods: {
@@ -38,6 +43,11 @@ export default {
 
   created() {
     EventBus.$on("pwa-updated", this.pwaUpdated);
+
+    // Load settings
+    if (this.settings.openScannerOnStart == true) {
+      this.$router.push("/scanner");
+    }
   }
 };
 </script>

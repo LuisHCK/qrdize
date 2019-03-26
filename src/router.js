@@ -24,6 +24,11 @@ export default new Router({
       path: '/scanner',
       name: 'scanner',
       component: () => import('./views/Scanner.vue')
+    },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: () => import('./views/Settings.vue')
     }
   ]
 })

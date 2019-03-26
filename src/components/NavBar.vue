@@ -17,6 +17,9 @@
       <vs-navbar-item index="1">
         <a @click="$router.push('/about')">About</a>
       </vs-navbar-item>
+      <vs-navbar-item index="2">
+        <a @click="$router.push('/settings')">Settings</a>
+      </vs-navbar-item>
 
       <vs-spacer></vs-spacer>
     </vs-navbar>
