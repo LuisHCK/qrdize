@@ -36,7 +36,4 @@ body {
     }
   }
 }
-.vs-button-border {
-  padding: 7px !important;
-}
 </style>

@@ -1,13 +1,12 @@
 <template>
   <div class="home">
     <div v-if="qrcodes.length">
-      <h1>QrCodes</h1>
       <ul class="qr-codes-list">
         <li class="qr-code-item" v-for="qrcode in qrcodes" :key="'qr'+qrcode.id">
           <div class="qr-code" v-html="getQrSvg(qrcode)">
           </div>
           <div class="qr-info">
-            <h4 v-text="qrcode.code"></h4>
+            <strong v-text="qrcode.code"></strong>
           </div>
         </li>
       </ul>
@@ -17,15 +16,15 @@
       <div>Start adding some Qr Codes</div>
     </div>
 
-    <div class="floating-button">
       <vs-button
+        class="fab-button"
         radius
+        size="large"
         color="primary"
-        type="border"
+        type="filled"
         icon="camera"
         @click="$router.push('/scanner')"
       ></vs-button>
-    </div>
   </div>
 </template>
 
@@ -83,8 +82,8 @@ export default {
     justify-content: center;
   }
 
-  .floating-button {
-    position: absolute;
+  .fab-button {
+    position: fixed;
     bottom: 15px;
     right: 15px;
   }
@@ -92,6 +91,9 @@ export default {
   .qr-code-item {
     display: flex;
     border-bottom: 1px solid rgb(233, 233, 233);
+    .qr-info {
+      padding-top: 15px;
+    }
   }
 }
 </style>

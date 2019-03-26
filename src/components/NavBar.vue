@@ -12,7 +12,7 @@
       </div>
 
       <vs-navbar-item index="0">
-        <a href="/">Home</a>
+        <a @click="$router.push('/')">Home</a>
       </vs-navbar-item>
       <vs-navbar-item index="1">
         <a href="#">My Qr Codes</a>

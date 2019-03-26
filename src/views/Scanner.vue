@@ -6,7 +6,7 @@
       size="large"
       radius
       color="primary"
-      type="border"
+      type="filled"
       icon="switch_camera"
       @click="toggleCamera"
     ></vs-button>
@@ -96,12 +96,11 @@ export default {
      * Pare the scanned text
      */
     getText(text) {
-      const defaultText = text + "";
-      const isUrl = /^(ftp|http|https):\/\/[^ "]+$/.test(text);
-      if (isUrl) {
+      const regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+      if (regexp.test(text)) {
         return `<a href="${text}" target="_blank">${text}</a>`;
       } else {
-        return defaultText;
+        return text;
       }
     },
 
@@ -110,6 +109,8 @@ export default {
      */
     closePopUp() {
       this.showPopUp = false;
+      // Reload Reader
+      this.setDefaultInputDevise()
     },
 
     saveCode() {
@@ -146,8 +147,8 @@ export default {
 
 <style scoped lang="scss">
 .toggle-btn {
-  position: absolute;
+  position: fixed;
   bottom: 15px;
-  left: 48%;
+  left: 46%;
 }
 </style>
