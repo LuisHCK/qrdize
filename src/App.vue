@@ -11,6 +11,29 @@ import NavBar from "@/components/NavBar.vue";
 export default {
   components: {
     NavBar
+  },
+
+  methods: {
+    /**
+     * Show PWA updated notification
+     */
+    pwaUpdated() {
+      this.$vs.dialog({
+        type: "confirm",
+        color: "success",
+        title: `Reload`,
+        text:
+          "New content is available; please refresh.",
+        accept: this.refreshApp
+      });
+    },
+
+    /**
+     * Force refresh app
+     */
+    refreshApp() {
+      location.reload(true)
+    }
   }
 };
 </script>
