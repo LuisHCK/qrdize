@@ -3,10 +3,9 @@
     <div v-if="qrcodes.length">
       <ul class="qr-codes-list">
         <li class="qr-code-item" v-for="qrcode in qrcodes" :key="'qr'+qrcode.id">
-          <div class="qr-code" v-html="getQrSvg(qrcode)">
-          </div>
+          <div class="qr-code" v-html="getQrSvg(qrcode)"></div>
           <div class="qr-info">
-            <strong v-text="qrcode.code"></strong>
+            <strong v-html="getCodeText(qrcode.code)"></strong>
           </div>
         </li>
       </ul>
@@ -16,15 +15,15 @@
       <div>Start adding some Qr Codes</div>
     </div>
 
-      <vs-button
-        class="fab-button"
-        radius
-        size="large"
-        color="primary"
-        type="filled"
-        icon="camera"
-        @click="$router.push('/scanner')"
-      ></vs-button>
+    <vs-button
+      class="fab-button"
+      radius
+      size="large"
+      color="primary"
+      type="filled"
+      icon="camera"
+      @click="$router.push('/scanner')"
+    ></vs-button>
   </div>
 </template>
 
@@ -48,7 +47,7 @@ export default {
      * Load qr codes from db
      */
     getQrCodes() {
-      this.$db.qrcodes.toArray(qrcodes => {
+      this.$db.qrcodes.reverse().toArray(qrcodes => {
         this.qrcodes = qrcodes;
       });
     },
@@ -59,6 +58,18 @@ export default {
     getQrSvg(text) {
       const writer = new BrowserQRCodeSvgWriter();
       return writer.write(text, 120, 120).outerHTML;
+    },
+
+    /**
+     * Pare the scanned text
+     */
+    getCodeText(text) {
+      const regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+      if (regexp.test(text)) {
+        return `<a href="${text}" target="_blank">${text}</a>`;
+      } else {
+        return text;
+      }
     }
   },
 
