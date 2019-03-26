@@ -12,13 +12,10 @@
       </div>
 
       <vs-navbar-item index="0">
-        <a @click="$router.push('/')">Home</a>
+        <a @click="$router.push('/')">My Qr Codes</a>
       </vs-navbar-item>
       <vs-navbar-item index="1">
-        <a href="#">My Qr Codes</a>
-      </vs-navbar-item>
-      <vs-navbar-item index="2">
-        <a href="#">About</a>
+        <a @click="$router.push('/about')">About</a>
       </vs-navbar-item>
 
       <vs-spacer></vs-spacer>
@@ -31,14 +28,17 @@ export default {
   data() {
     return {
       indexActive: 0,
-      colorx: '#039BE5'
-    }
+      colorx: "#039BE5"
+    };
   }
 };
 </script>
 
 <style scoped lang="scss">
 .mainNavBar {
-  color: rgb(255,255,255)
+  color: rgb(255, 255, 255);
+  a {
+    cursor: pointer;
+  }
 }
 </style>
