@@ -1,25 +1,24 @@
 <template>
   <div class="reader-page">
     <video id="video" width="100%" height="100%"></video>
-    <vs-button
-      class="toggle-btn"
-      size="large"
-      radius
-      color="primary"
-      type="filled"
-      icon="switch_camera"
-      @click="toggleCamera"
-    ></vs-button>
+
+    <!-- Toggle btn -->
+    <div class="toggle-container">
+      <a-button @click="toggleCamera" type="primary" shape="circle" icon="swap"></a-button>
+    </div>
+
     <!-- Poppup -->
-    <vs-popup :title="'Code: '" :active.sync="showPopUp" @close="closePopUp">
-      <div class="code-container">
-        <span class="code" v-html="getText(qrcode.text)"></span>
-        <div>
-          <br>
-          <vs-button @click="saveCode" color="primary" type="filled">Save QrCode</vs-button>
-        </div>
-      </div>
-    </vs-popup>
+    <a-modal
+      title="Code content"
+      cancelText="Close"
+      okText="Save Code"
+      centered
+      v-model="showPopUp"
+      @ok="() => saveCode()"
+      @cancel="closePopUp"
+    >
+      <span class="code" v-html="getText(qrcode.text)"></span>
+    </a-modal>
   </div>
 </template>
 
@@ -96,7 +95,7 @@ export default {
      * Pare the scanned text
      */
     getText(text) {
-      const regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+      const regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
       if (regexp.test(text)) {
         return `<a href="${text}" target="_blank">${text}</a>`;
       } else {
@@ -110,7 +109,7 @@ export default {
     closePopUp() {
       this.showPopUp = false;
       // Reload Reader
-      this.initReader()
+      this.initReader();
     },
 
     saveCode() {
@@ -119,10 +118,8 @@ export default {
         description: this.description,
         date: new Date().toISOString()
       });
-      this.closePopUp();
-      setTimeout(() => {
-        this.$router.push("/");
-      }, 300);
+      this.reader.stopStreams();
+      this.$router.push("/");
     },
 
     close() {},
@@ -141,14 +138,20 @@ export default {
    */
   mounted() {
     this.initReader();
+  },
+
+  beforeDestroy() {
+    this.reader.stopStreams();
   }
 };
 </script>
 
 <style scoped lang="scss">
-.toggle-btn {
+.toggle-container {
   position: fixed;
-  bottom: 15px;
-  left: 46%;
+  bottom: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 </style>

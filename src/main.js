@@ -2,13 +2,18 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import Vuesax from 'vuesax'
 import './registerServiceWorker'
-import 'vuesax/dist/vuesax.css' //Vuesax styles
-import 'material-design-icons/iconfont/material-icons.css'
 import './db'
+import { Button, Icon, Checkbox, Modal, Layout, Popconfirm} from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
 
-Vue.use(Vuesax)
+Vue.use(Button)
+Vue.use(Icon)
+Vue.use(Checkbox)
+Vue.use(Modal)
+Vue.use(Layout)
+Vue.use(Popconfirm)
+
 
 Vue.config.productionTip = false
 

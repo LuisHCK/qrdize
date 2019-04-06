@@ -1,18 +1,25 @@
 <template>
-  <div id="app">
-    <nav-bar/>
-    <router-view/>
-  </div>
+  <a-layout id="main-layout">
+    <a-layout>
+      <a-layout-header class="header">
+        <div class="logo">QrDize</div>
+      </a-layout-header>
+      <a-layout-content id="main-layout-content">
+        <router-view/>
+        <footer-nav />
+      </a-layout-content>
+    </a-layout>
+  </a-layout>
 </template>
 
 <script>
 import EventBus from "./event-bus";
-import NavBar from "@/components/NavBar.vue";
+import FooterNav from "@/components/FooterNav.vue";
 import { mapState } from "vuex";
 
 export default {
   components: {
-    NavBar
+    FooterNav
   },
 
   computed: {
@@ -38,6 +45,13 @@ export default {
      */
     refreshApp() {
       location.reload(true);
+    },
+
+    onCollapse(collapsed, type) {
+      console.log(collapsed, type);
+    },
+    onBreakpoint(broken) {
+      console.log(broken);
     }
   },
 
@@ -60,17 +74,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-#app {
+#main-layout {
   min-height: 100vh;
+  #main-layout-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+  }
 }
-#nav {
-  padding: 30px;
-  a {
+
+.header {
+  background-color: rgb(3, 155, 229) !important;
+  .logo {
+    color: white;
+    font-size: 16pt;
     font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
   }
 }
 </style>

@@ -8,13 +8,17 @@
             <strong v-html="getCodeText(qrcode.code)"></strong>
           </div>
           <div class="qr-actions">
-            <vs-button
-              radius
-              color="danger"
-              type="border"
-              icon="delete"
-              @click="deleteQrCode(qrcode.id)"
-            ></vs-button>
+            <a-popconfirm
+              placement="topRight"
+              okText="Yes"
+              cancelText="No"
+              @confirm="deleteQrCode(qrcode.id)"
+            >
+              <template slot="title">
+                <p>Do you whant to delete this Code?</p>
+              </template>
+              <a-button type="danger" shape="circle" icon="delete"></a-button>
+            </a-popconfirm>
           </div>
         </li>
       </ul>
@@ -23,16 +27,6 @@
       <h1>Welcome to QrDize</h1>
       <div>Start adding some Qr Codes</div>
     </div>
-
-    <vs-button
-      class="fab-button"
-      radius
-      size="large"
-      color="primary"
-      type="filled"
-      icon="camera"
-      @click="$router.push('/scanner')"
-    ></vs-button>
   </div>
 </template>
 
@@ -125,18 +119,22 @@ export default {
     right: 15px;
   }
 
-  .qr-code-item {
-    display: flex;
-    border-bottom: 1px solid rgb(233, 233, 233);
-    .qr-info {
-      width: 100%;
-      word-break: break-word;
-      padding-top: 15px;
-    }
-    .qr-actions {
+  .qr-codes-list {
+    padding: 0;
+    .qr-code-item {
       display: flex;
-      align-items: center;
-      margin-right: 15px;
+      border-bottom: 1px solid rgb(233, 233, 233);
+      background-color: rgb(250, 250, 250);
+      .qr-info {
+        width: 100%;
+        word-break: break-word;
+        padding-top: 15px;
+      }
+      .qr-actions {
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+      }
     }
   }
 }
