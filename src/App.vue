@@ -6,9 +6,12 @@
       </a-layout-header>
       <a-layout-content id="main-layout-content">
         <router-view/>
-        <footer-nav />
+        <footer-nav/>
       </a-layout-content>
     </a-layout>
+    <a-modal title="App updates" v-model="updates" @ok="this.refreshApp">
+      <p>New content is available, refresh to update</p>
+    </a-modal>
   </a-layout>
 </template>
 
@@ -22,6 +25,12 @@ export default {
     FooterNav
   },
 
+  data() {
+    return {
+      updates: false
+    }
+  },
+
   computed: {
     ...mapState(["settings"])
   },
@@ -31,13 +40,7 @@ export default {
      * Show PWA updated notification
      */
     pwaUpdated() {
-      this.$vs.dialog({
-        type: "confirm",
-        color: "success",
-        title: `Reload`,
-        text: "New content is available; please refresh.",
-        accept: this.refreshApp
-      });
+      this.updates = true
     },
 
     /**
@@ -57,7 +60,6 @@ export default {
 
   created() {
     EventBus.$on("pwa-updated", this.pwaUpdated);
-
     // Load settings
     if (this.settings.openScannerOnStart == true) {
       this.$router.push("/scanner");
@@ -79,7 +81,7 @@ body {
   #main-layout-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between
+    justify-content: space-between;
   }
 }
 
