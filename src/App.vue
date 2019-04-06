@@ -6,7 +6,7 @@
       </a-layout-header>
       <a-layout-content id="main-layout-content">
         <router-view/>
-        <footer-nav/>
+        <footer-nav class="main-footer"/>
       </a-layout-content>
     </a-layout>
     <a-modal title="App updates" v-model="updates" @ok="this.refreshApp">
@@ -78,10 +78,10 @@ body {
 }
 #main-layout {
   min-height: 100vh;
-  #main-layout-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  .main-footer {
+  	position: fixed;
+  	bottom: 0;
+  	width: 100%;
   }
 }
 
