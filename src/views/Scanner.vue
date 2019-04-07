@@ -61,15 +61,14 @@ export default {
         .getVideoInputDevices()
         .then(videoInputDevices => {
           this.videoInputDevices = videoInputDevices;
+          // Check for defined default camera in settings
+          if (this.settings.defaultCamera !== undefined) {
+            console.log(this.settings.defaultCamera);
+            return this.setDefaultInputDevice(this.settings.defaultCamera);
+          }
           // Set input device
           if (this.videoInputDevices.length > 1) {
-            // Check for defined default camera in settings
-            if (this.settings.defaultCamera) {
-              this.setDefaultInputDevice(this.settings.defaultCamera);
-              console.log(this.settings.defaultCamera);
-            } else {
-              this.setDefaultInputDevice(1);
-            }
+            this.setDefaultInputDevice(1);
           } else {
             this.setDefaultInputDevice(0);
           }
