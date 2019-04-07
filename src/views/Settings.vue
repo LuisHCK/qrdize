@@ -8,17 +8,43 @@
           @change="updateSetting('openScannerOnStart', $event.target.checked)"
         ></a-checkbox>
       </li>
+
+      <li class="setting-item">
+        <span>Default camera</span>
+        <a-select
+          style="width: 60%"
+          :defaultValue="settings.defaultCamera"
+          @change="setDefaultCamera">
+          <a-select-option
+            v-for="(camera, i) in cameras"
+            :key="'camera_select' + i"
+            :value="i">
+              {{ camera.label }}
+           </a-select-option>
+        </a-select>
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import { BrowserQRCodeReader } from "@zxing/library";
+
+// initialize reader
+const Reader = new BrowserQRCodeReader()
+
 export default {
   name: "settings",
 
   computed: {
     ...mapState(["settings"])
+  },
+
+  data() {
+    return {
+      cameras: [{}]
+    }
   },
 
   methods: {
@@ -29,21 +55,39 @@ export default {
     updateSetting(key, value) {
       this.settings[key] = value;
       this.updateSettings();
+    },
+
+    setDefaultCamera(index) {
+      console.log(index)
+      this.settings.defaultCamera = index
+      this.updateSettings()
+    },
+
+    getCameras() {
+      Reader.getVideoInputDevices()
+        .then(videoInputDevices => {
+          this.cameras = videoInputDevices
+        })
     }
+  },
+
+  mounted() {
+    this.getCameras()
   }
 };
 </script>
 
 <style scoped lang="scss">
 .settings-list {
-  padding: 20px 20px 20px 20px;
-  border-bottom: 1px;
-  border-bottom: 1px solid rgb(233, 233, 233);
-  background-color: rgb(250, 250, 250);
+  padding: 0;
   .setting-item {
+    border-bottom: 1px;
+    padding: 15px 15px 15px 15px;
+    border-bottom: 1px solid rgb(233, 233, 233);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: white;
   }
 }
 </style>

@@ -16,6 +16,7 @@
       v-model="showPopUp"
       @ok="() => saveCode()"
       @cancel="closePopUp"
+      width="550"
     >
       <span class="code" v-html="getText(qrcode.text)"></span>
     </a-modal>
@@ -23,14 +24,15 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import { BrowserQRCodeReader } from "@zxing/library";
-import SuccessPopUp from "@/components/SuccessPopUp.vue";
 
 export default {
   name: "scanner",
 
-  components: {
-    SuccessPopUp
+  /** Computed Vuex state */
+  computed: {
+    ...mapState(["settings"])
   },
 
   /**
@@ -42,12 +44,11 @@ export default {
       videoInputDevices: [],
       qrcode: {},
       showPopUp: false,
-      activePrompt: false,
       description: undefined,
       // Propmt
       val: "",
       activePrompt: false,
-      currentDevise: 0
+      currentDevice: 0
     };
   },
 
@@ -60,22 +61,28 @@ export default {
         .getVideoInputDevices()
         .then(videoInputDevices => {
           this.videoInputDevices = videoInputDevices;
-          // Set input devise
+          // Set input device
           if (this.videoInputDevices.length > 1) {
-            this.setDefaultInputDevise(1);
+            // Check for defined default camera in settings
+            if (this.settings.defaultCamera) {
+              this.setDefaultInputDevice(this.settings.defaultCamera);
+              console.log(this.settings.defaultCamera);
+            } else {
+              this.setDefaultInputDevice(1);
+            }
           } else {
-            this.setDefaultInputDevise(0);
+            this.setDefaultInputDevice(0);
           }
         })
         .catch(err => console.error(err));
     },
 
     /**
-     * Set devise 0 as default
+     * Set device 0 as default
      */
-    setDefaultInputDevise(id = 0) {
+    setDefaultInputDevice(id = 0) {
       const DeviceId = this.videoInputDevices[id].deviceId;
-      this.currentDevise = id;
+      this.currentDevice = id;
 
       this.reader
         .decodeFromInputVideoDevice(DeviceId, "video")
@@ -89,6 +96,8 @@ export default {
     processCode(result) {
       this.qrcode = result;
       this.showPopUp = true;
+      // Reload Reader
+      this.initReader();
     },
 
     /**
@@ -108,8 +117,6 @@ export default {
      */
     closePopUp() {
       this.showPopUp = false;
-      // Reload Reader
-      this.initReader();
     },
 
     saveCode() {
@@ -125,10 +132,10 @@ export default {
     close() {},
 
     toggleCamera() {
-      if (this.currentDevise == 0 && this.videoInputDevices.length > 1) {
-        this.setDefaultInputDevise(1);
+      if (this.currentDevice == 0 && this.videoInputDevices.length > 1) {
+        this.setDefaultInputDevice(1);
       } else {
-        this.setDefaultInputDevise(0);
+        this.setDefaultInputDevice(0);
       }
     }
   },
