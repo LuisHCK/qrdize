@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       updates: false
-    }
+    };
   },
 
   computed: {
@@ -40,7 +40,7 @@ export default {
      * Show PWA updated notification
      */
     pwaUpdated() {
-      this.updates = true
+      this.updates = true;
     },
 
     /**
@@ -49,13 +49,6 @@ export default {
     refreshApp() {
       location.reload(true);
     },
-
-    onCollapse(collapsed, type) {
-      console.log(collapsed, type);
-    },
-    onBreakpoint(broken) {
-      console.log(broken);
-    }
   },
 
   created() {
@@ -79,9 +72,13 @@ body {
 #main-layout {
   min-height: 100vh;
   .main-footer {
-  	position: fixed;
-  	bottom: 0;
-  	width: 100%;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  #main-layout-content {
+    margin-bottom: 64px;
   }
 }
 

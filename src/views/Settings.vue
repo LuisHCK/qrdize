@@ -58,7 +58,6 @@ export default {
     },
 
     setDefaultCamera(index) {
-      console.log(index)
       this.settings.defaultCamera = index
       this.updateSettings()
     },
