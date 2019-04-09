@@ -89,6 +89,11 @@ export default {
         })
         .catch(err => {
           console.log(err);
+          this.$notification.error({
+            message: "Qr Code Loading error",
+            description:
+              "There was an error loading the stored qr codes."
+          });
         });
     }
   },
