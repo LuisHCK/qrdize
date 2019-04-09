@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.livingcompany.qrdize",
+      "sha256_cert_fingerprints": [
+        "82:6A:43:EE:F7:EF:A0:86:75:9A:C4:26:53:0B:8B:3F:3E:A5:77:46:9A:1B:EB:96:A3:53:AB:D2:31:42:74:7F"
+      ]
+    }
+  }
+]
