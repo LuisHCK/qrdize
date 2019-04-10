@@ -1,24 +1,24 @@
 <template>
   <a-layout-footer style="textAlign: center">
     <button class="nav-button" :class="{active: activeButton==0}" @click="navigateTo('/', 0)">
-      <a-icon type="home" :style="{fontSize: '24pt'}"/>
+      <a-icon type="home" :style="{fontSize: '18pt'}"/>
     </button>
     <button
       class="nav-button"
       :class="{active: activeButton==1}"
       @click="navigateTo('/scanner', 1)"
     >
-      <a-icon type="scan" :style="{fontSize: '24pt'}"/>
+      <a-icon type="scan" :style="{fontSize: '18pt'}"/>
     </button>
     <button
       class="nav-button"
       :class="{active: activeButton==3}"
       @click="navigateTo('/settings', 3)"
     >
-      <a-icon type="setting" :style="{fontSize: '24pt'}"/>
+      <a-icon type="setting" :style="{fontSize: '18pt'}"/>
     </button>
     <button class="nav-button" :class="{active: activeButton==2}" @click="navigateTo('/about', 2)">
-      <a-icon type="info-circle" :style="{fontSize: '24pt'}"/>
+      <a-icon type="info-circle" :style="{fontSize: '18pt'}"/>
     </button>
   </a-layout-footer>
 </template>

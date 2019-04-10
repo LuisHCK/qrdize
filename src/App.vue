@@ -83,7 +83,7 @@ body {
   }
 
   #main-layout-content {
-    margin-bottom: 64px;
+    margin-bottom: 48px;
   }
 }
 
