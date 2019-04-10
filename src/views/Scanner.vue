@@ -95,8 +95,6 @@ export default {
     processCode(result) {
       this.qrcode = result;
       this.showPopUp = true;
-      // Reload Reader
-      this.initReader();
     },
 
     /**
@@ -116,6 +114,8 @@ export default {
      */
     closePopUp() {
       this.showPopUp = false;
+      // Reload Reader
+      this.initReader();
     },
 
     saveCode() {
