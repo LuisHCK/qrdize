@@ -1,7 +1,0 @@
-{
-  "appId": "com.livingcompany.qrdize",
-  "appName": "QrDize",
-  "bundledWebRuntime": false,
-  "webDir": "dist",
-  "linuxAndroidStudioPath": "/usr/local/bin/studio"
-}

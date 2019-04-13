@@ -1,0 +1,15 @@
+{
+    "name": "com.livingcompany.qrdize",
+    "displayName": "QrDize",
+    "version": "1.0.0",
+    "description": "A free and OpenSource QR code scanner.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "ecosystem:cordova"
+    ],
+    "author": "Luis J. Centeno",
+    "license": "MIT"
+}

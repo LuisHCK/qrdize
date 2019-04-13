@@ -6,7 +6,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    settings: {}
+    settings: {
+      scanInterval: 1
+    }
   },
   mutations: {
     setSettings(state, value) {

@@ -20,5 +20,5 @@ yarn-error.log*
 *.sln
 *.sw*
 
-# Capacitor android template
-/android
+# Cordova www
+/cordova/www/*

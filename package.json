@@ -6,12 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "sync-capacitor": "yarn build && npx cap sync"
+    "cordova-sync": "yarn build && cp -r ./dist/* ./cordova/www/"
   },
   "dependencies": {
-    "@capacitor/android": "^1.0.0-beta.19",
-    "@capacitor/cli": "^1.0.0-beta.19",
-    "@capacitor/core": "^1.0.0-beta.19",
     "@zxing/library": "^0.12.3",
     "ant-design-vue": "^1.3.8",
     "dexie": "^2.0.4",
