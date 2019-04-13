@@ -23,7 +23,12 @@ export default new Router({
     {
       path: '/scanner',
       name: 'scanner',
-      component: () => import('./views/Scanner.vue')
+      component: () => import('./views/MainScan.vue')
+    },
+    {
+      path: '/batch-scanner',
+      name: 'batch-scanner',
+      component: () => import('./views/BatchScan.vue')
     },
     {
       path: '/settings',

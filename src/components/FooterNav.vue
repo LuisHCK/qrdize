@@ -82,7 +82,7 @@ export default {
     transition: 0.3s;
   }
   .nav-button.active {
-    background-color: rgb(3, 155, 229);
+    background-color: #039be5;
     color: white;
   }
 }

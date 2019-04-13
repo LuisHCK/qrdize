@@ -23,6 +23,15 @@
            </a-select-option>
         </a-select>
       </li>
+      <li class="setting-item">
+        <span>Seconds between scans</span>
+         <a-input-number
+          v-model="settings.scanInterval"
+          style="width: 150px"
+          placeholder="Time in seconds"
+          :min="1"
+          @change="setScanInterval"/>
+      </li>
     </ul>
   </div>
 </template>
@@ -59,6 +68,11 @@ export default {
 
     setDefaultCamera(index) {
       this.settings.defaultCamera = index
+      this.updateSettings()
+    },
+
+    setScanInterval(val) {
+      this.settings.scanInterval = val
       this.updateSettings()
     },
 

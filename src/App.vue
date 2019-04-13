@@ -83,7 +83,10 @@ body {
   }
 
   #main-layout-content {
-    margin-bottom: 48px;
+    margin-bottom: 57px;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -94,5 +97,12 @@ body {
     font-size: 16pt;
     font-weight: bold;
   }
+}
+.toggle-container {
+  position: fixed;
+  bottom: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 </style>

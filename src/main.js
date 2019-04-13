@@ -13,9 +13,11 @@ import {
   Popconfirm,
   message,
   Select,
-  notification
+  notification,
+  Menu,
+  InputNumber
 } from "ant-design-vue";
-import "ant-design-vue/dist/antd.css";
+import "ant-design-vue/dist/antd.less";
 
 Vue.use(Button);
 Vue.use(Icon);
@@ -24,6 +26,8 @@ Vue.use(Modal);
 Vue.use(Layout);
 Vue.use(Popconfirm);
 Vue.use(Select);
+Vue.use(Menu)
+Vue.use(InputNumber)
 
 // Vue protos
 Vue.prototype.$notification = notification;
