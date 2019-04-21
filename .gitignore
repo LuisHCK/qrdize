@@ -22,3 +22,10 @@ yarn-error.log*
 
 # Cordova www
 /cordova/www/*
+/cordova/node_modules
+/cordova/platforms
+/cordova/plugins
+# Cordova
+/src-cordova/platforms
+/src-cordova/plugins
+/public/cordova.js

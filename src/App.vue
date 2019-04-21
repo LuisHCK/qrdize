@@ -19,11 +19,6 @@
 import EventBus from "./event-bus";
 import FooterNav from "@/components/FooterNav.vue";
 import { mapState } from "vuex";
-import { Plugins, StatusBarStyle } from "@capacitor/core";
-
-const { StatusBar } = Plugins;
-
-StatusBar.setBackgroundColor({ color: "#0185c7" });
 
 export default {
   components: {

@@ -1,9 +1,11 @@
 module.exports = {
   lintOnSave: false,
   runtimeCompiler: true,
+
   pwa: {
     workboxOptions: { skipWaiting: true }
   },
+
   css: {
     loaderOptions: {
       less: {
@@ -13,5 +15,11 @@ module.exports = {
         javascriptEnabled: true
       }
     }
+  },
+
+  publicPath: '',
+
+  pluginOptions: {
+    cordovaPath: 'src-cordova'
   }
 }
